@@ -1,0 +1,548 @@
+/* ==========================================
+   SociAlly - 完整UI样式
+   背景图片：在 .app-container 中修改
+   ========================================== */
+
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* ========== 主容器 - 背景图片在这里设置 ========== */
+  .app-container {
+    min-height: 100vh;
+    
+    /* 背景图片 - 把你的 jpg 放到 public 文件夹，命名为 bg.jpg */
+    background-image: url('socially.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    /* 如果图片加载失败，显示这个渐变作为备用 */
+    background-color: #0f172a;
+    
+    position: relative;
+  }
+  
+  /* 背景叠加层（让文字更清晰） */
+  .app-container::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.3);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* ========== 导航栏 ========== */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .nav-link:hover, .nav-link.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* ========== 毛玻璃卡片 ========== */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+  }
+  
+  .glass-card h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .glass-card p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  
+  /* ========== 首页 ========== */
+  .home-content {
+    position: relative;
+    z-index: 1;
+    padding: 7rem 2rem 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .home-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .home-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 2.5rem;
+  }
+  
+  .home-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (max-width: 700px) {
+    .home-grid { grid-template-columns: 1fr; }
+    .home-title { font-size: 2rem; }
+  }
+  
+  /* Topics 列表 */
+  .topics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .topic-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+  }
+  
+  .topic-num {
+    width: 22px;
+    height: 22px;
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #a5b4fc;
+  }
+  
+  /* Agents 卡片 */
+  .agents-card {
+    margin-bottom: 2rem;
+  }
+  
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  
+  @media (max-width: 600px) {
+    .agents-grid { grid-template-columns: 1fr; }
+  }
+  
+  .agent-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.75rem;
+  }
+  
+  .agent-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .agent-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .agent-name {
+    font-weight: 600;
+    color: white;
+    font-size: 0.95rem;
+  }
+  
+  .agent-desc {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  /* 开始表单 */
+  .start-section {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .name-input {
+    padding: 0.9rem 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    width: 260px;
+    transition: all 0.3s;
+  }
+  
+  .name-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .name-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  .start-btn {
+    padding: 0.9rem 1.75rem;
+    border-radius: 0.75rem;
+    border: none;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+  }
+  
+  /* ========== 聊天页面 ========== */
+  .chat-wrapper {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 1.5rem 1.5rem;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .chat-container {
+    width: 100%;
+    max-width: 750px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+  }
+  
+  /* 聊天头部 */
+  .chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .back-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.4rem;
+    transition: all 0.2s;
+  }
+  
+  .back-btn:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .header-center {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .header-center h2 {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .header-spacer {
+    width: 60px;
+  }
+  
+  .phase-badge {
+    background: rgba(99, 102, 241, 0.3);
+    color: #a5b4fc;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  
+  .done-badge {
+    background: rgba(16, 185, 129, 0.3);
+    color: #6ee7b7;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+  
+  /* 消息区域 */
+  .messages-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .message {
+    display: flex;
+    gap: 0.6rem;
+    max-width: 85%;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .message.user {
+    margin-left: auto;
+    flex-direction: row-reverse;
+  }
+  
+  .message.system {
+    margin: 0 auto;
+  }
+  
+  .message.system .msg-bubble {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+  }
+  
+  .msg-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .msg-bubble {
+    padding: 0.5rem 0.9rem;
+    border-radius: 1rem;
+    max-width: 100%;
+  }
+  
+  .agent-bubble {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top-left-radius: 0.25rem;
+  }
+  
+  .user-bubble {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-top-right-radius: 0.25rem;
+  }
+  
+  .msg-name {
+    font-size: 0.65rem;
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+    opacity: 0.9;
+  }
+  
+  .msg-text {
+    color: white;
+    line-height: 1.4;
+    font-size: 0.9rem;
+  }
+  
+  /* 打字动画 */
+  .typing-dots {
+    display: flex;
+    gap: 4px;
+    padding: 4px 0;
+  }
+  
+  .typing-dots span {
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+  }
+  
+  .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+  .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+  
+  @keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+  }
+  
+  /* 输入区域 */
+  .input-area {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .msg-input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+  
+  .msg-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .msg-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  .msg-input:disabled {
+    opacity: 0.5;
+  }
+  
+  .send-btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.75rem;
+    border: none;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .send-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  }
+  
+  .send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* 结束横幅 */
+  .ended-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(16, 185, 129, 0.1);
+  }
+  
+  .ended-banner span {
+    color: #6ee7b7;
+    font-weight: 500;
+  }
+  
+  .ended-banner button {
+    padding: 0.6rem 1.25rem;
+    border-radius: 0.5rem;
+    border: none;
+    background: rgba(16, 185, 129, 0.3);
+    color: #6ee7b7;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .ended-banner button:hover {
+    background: rgba(16, 185, 129, 0.5);
+  }
+  
+  /* 滚动条 */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
