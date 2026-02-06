@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
-import { HttpsProxyAgent } from "https-proxy-agent";
 
 dotenv.config();
 
@@ -10,14 +9,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 代理配置
-const PROXY = "http://127.0.0.1:7890";
-const proxyAgent = new HttpsProxyAgent(PROXY);
-
-const client = new OpenAI({
+// 代理配置 - 仅本地开发时使用
+// 部署到 Railway 后不需要代理（服务器在国外）
+let clientOptions = {
   apiKey: process.env.OPENAI_API_KEY,
-  httpAgent: proxyAgent,
-});
+};
+
+// 如果设置了 USE_PROXY=true，才使用代理（本地开发用）
+if (process.env.USE_PROXY === "true") {
+  const { HttpsProxyAgent } = await import("https-proxy-agent");
+  const PROXY = process.env.PROXY_URL || "http://127.0.0.1:7890";
+  clientOptions.httpAgent = new HttpsProxyAgent(PROXY);
+  console.log("Using proxy:", PROXY);
+}
+
+const client = new OpenAI(clientOptions);
 
 // ============================================
 // LLM 润色函数 - 让固定回复更自然
@@ -1157,6 +1163,7 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-app.listen(8787, () => {
-  console.log("✅ Server running: http://localhost:8787");
+const PORT = process.env.PORT || 8787;
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
 });
