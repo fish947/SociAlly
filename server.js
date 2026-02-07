@@ -1,3 +1,5 @@
+import path from "path";
+import { fileURLToPath } from "url";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -1162,8 +1164,28 @@ app.post("/chat", async (req, res) => {
     return res.status(500).json({ error: String(e?.message || e) });
   }
 });
+// ============================================
+// 生产环境：serve 前端静态文件
+// ============================================
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "dist")));
+  
+  app.get("*", (req, res) => {
+    if (!req.path.startsWith("/chat") && !req.path.startsWith("/orchestrate")) {
+      res.sendFile(path.join(__dirname, "dist", "index.html"));
+    }
+  });
+}
 
 const PORT = process.env.PORT || 8787;
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
+const PORT = process.env.PORT || 8787;
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
+});
+
