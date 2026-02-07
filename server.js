@@ -1173,7 +1173,7 @@ const __dirname = path.dirname(__filename);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "dist")));
   
-  app.get("*", (req, res) => {
+  app.get("/*", (req, res) => {
     if (!req.path.startsWith("/chat") && !req.path.startsWith("/orchestrate")) {
       res.sendFile(path.join(__dirname, "dist", "index.html"));
     }
@@ -1184,5 +1184,6 @@ const PORT = process.env.PORT || 8787;
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
+
 
 
