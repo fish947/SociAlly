@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "start": "node server.js",
+  "preview": "vite preview"
+},
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
