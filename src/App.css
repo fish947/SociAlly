@@ -14,7 +14,7 @@
     min-height: 100vh;
     
     /* 背景图片 - 把你的 jpg 放到 public 文件夹，命名为 bg.jpg */
-    background-image: url('socially.jpg');
+    background-image: url('/socially.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
